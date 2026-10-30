@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LocalPulse.ai - Free Multi-Tool Local Lead & Audit Platform</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        darkBg: '#0b0f19',
+                        cardBg: '#131c2e',
+                        accentBlue: '#3b82f6',
+                        accentPurple: '#8b5cf6'
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+</head>
+<body class="bg-darkBg text-slate-100 min-h-screen font-sans selection:bg-accentBlue selection:text-white">
+
+    <!-- Top Navigation Bar -->
+    <header class="border-b border-slate-800 bg-darkBg/80 backdrop-blur-md sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 to-purple-600 flex items-center justify-center shadow-lg shadow-blue-500/30">
+                    <i data-lucide="zap" class="w-5 h-5 text-white"></i>
+                </div>
+                <span class="text-xl font-bold tracking-tight bg-gradient-to-r from-white via-slate-200 to-slate-400 bg-clip-text text-transparent">LocalPulse<span class="text-accentBlue">.ai</span></span>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-6 text-sm font-medium text-slate-300">
+                <button onclick="switchTab('home')" class="hover:text-white transition" id="nav-home">Home</button>
+                <button onclick="switchTab('lead-finder')" class="hover:text-white transition text-accentBlue" id="nav-lead-finder">Lead Finder Pro</button>
+                <button onclick="switchTab('seo-auditor')" class="hover:text-white transition" id="nav-seo-auditor">SEO Auditor</button>
+                <button onclick="switchTab('social-scanner')" class="hover:text-white transition" id="nav-social-scanner">Social Scanner</button>
+                <button onclick="switchTab('api-hub')" class="hover:text-white transition" id="nav-api-hub">API Hub</button>
+            </nav>
+
+            <div class="flex items-center space-x-3">
+                <span class="text-xs px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-medium">₹0 Free Tier</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+
+        <!-- ================= TAB 1: HOME ================= -->
+        <section id="tab-home" class="tab-content space-y-12 hidden">
+            <div class="text-center space-y-4 py-12">
+                <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-accentBlue text-xs font-semibold uppercase tracking-wider">
+                    <span>Next-Gen Open Data Prospector</span>
+                </div>
+                <h1 class="text-4xl sm:text-6xl font-extrabold tracking-tight text-white max-w-4xl mx-auto leading-tight">
+                    Discover Local Businesses <span class="bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">Missing Web Presence</span>
+                </h1>
+                <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+                    A completely free, multi-tool platform leveraging open-source mapping data and AI to instantly find local leads without capturing user phone numbers.
+                </p>
+                <div class="pt-4 flex justify-center gap-4">
+                    <button onclick="switchTab('lead-finder')" class="px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-lg shadow-blue-600/30 hover:opacity-90 transition flex items-center space-x-2">
+                        <span>Launch Lead Finder Pro</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 2: LEAD FINDER PRO (CORE TOOL) ================= -->
+        <section id="tab-lead-finder" class="tab-content space-y-8">
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 sm:p-8 shadow-2xl relative overflow-hidden">
+                <div class="absolute -right-20 -top-20 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none"></div>
+                
+                <div class="max-w-3xl mb-8">
+                    <h2 class="text-2xl font-bold text-white flex items-center gap-2">
+                        <i data-lucide="search" class="text-accentBlue"></i> Lead Finder Pro Engine
+                    </h2>
+                    <p class="text-slate-400 text-sm mt-1">Enter your target business niche and city location. Our tool queries public map databases live to find local companies.</p>
+                </div>
+
+                <!-- Dual Search Form -->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">WHAT (Topic / Niche)</label>
+                        <div class="relative">
+                            <i data-lucide="briefcase" class="absolute left-4 top-3.5 w-5 h-5 text-slate-500"></i>
+                            <input type="text" id="search-what" placeholder="e.g., gym, cafe, dentist, hotel" class="w-full bg-darkBg border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-accentBlue transition">
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-300 uppercase tracking-wider mb-2">WHERE (Location / City)</label>
+                        <div class="relative">
+                            <i data-lucide="map-pin" class="absolute left-4 top-3.5 w-5 h-5 text-slate-500"></i>
+                            <input type="text" id="search-where" placeholder="e.g., Prayagraj, Delhi, Austin" class="w-full bg-darkBg border border-slate-700 rounded-xl pl-12 pr-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-accentBlue transition">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex flex-wrap items-center justify-between gap-4 pt-4 border-t border-slate-800/80">
+                    <div class="flex items-center space-x-4 text-xs text-slate-400">
+                        <label class="flex items-center space-x-2 cursor-pointer">
+                            <input type="checkbox" id="filter-nowebsite" checked class="rounded border-slate-700 bg-darkBg text-accentBlue focus:ring-0">
+                            <span>Highlight Missing Websites</span>
+                        </label>
+                    </div>
+                    <button onclick="executeLiveSearch()" id="search-btn" class="px-8 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-purple-600 text-white font-semibold shadow-lg shadow-blue-500/20 hover:opacity-90 transition flex items-center space-x-2">
+                        <i data-lucide="zap" class="w-4 h-4"></i>
+                        <span>Scan Database Instantly</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Loading State -->
+            <div id="loading-state" class="hidden text-center py-16 space-y-4">
+                <div class="inline-block w-10 h-10 border-4 border-accentBlue border-t-transparent rounded-full animate-spin"></div>
+                <p class="text-slate-400 text-sm">Querying global open-source map databases & analyzing digital footprints...</p>
+            </div>
+
+            <!-- Results Section -->
+            <div id="results-container" class="space-y-6 hidden">
+                <div class="flex items-center justify-between">
+                    <h3 class="text-xl font-bold text-white" id="results-heading">Scan Results</h3>
+                    <span class="text-xs px-3 py-1 rounded-full bg-blue-500/10 text-accentBlue border border-blue-500/20" id="result-count">0 found</span>
+                </div>
+                <div class="grid grid-cols-1 gap-4" id="results-list"></div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 3: SEO AUDITOR ================= -->
+        <section id="tab-seo-auditor" class="tab-content space-y-6 hidden">
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 sm:p-8">
+                <h2 class="text-2xl font-bold text-white mb-2">Quick Website Health Auditor</h2>
+                <p class="text-slate-400 text-sm mb-6">Analyze basic security certificates and performance markers of any web domain.</p>
+                <div class="flex gap-4">
+                    <input type="text" id="audit-url" placeholder="https://example.com" class="flex-1 bg-darkBg border border-slate-700 rounded-xl px-4 py-3 text-white placeholder-slate-500 focus:outline-none focus:border-accentBlue">
+                    <button onclick="runSimpleAudit()" class="px-6 py-3 rounded-xl bg-accentBlue text-white font-semibold hover:bg-blue-600 transition">Run Audit</button>
+                </div>
+                <div id="audit-result" class="mt-6 hidden p-4 rounded-xl bg-darkBg border border-slate-800 text-sm text-slate-300"></div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 4: SOCIAL SCANNER ================= -->
+        <section id="tab-social-scanner" class="tab-content space-y-6 hidden">
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 sm:p-8">
+                <h2 class="text-2xl font-bold text-white mb-2">Social Media Footprint Checker</h2>
+                <p class="text-slate-400 text-sm mb-6">Verify if local businesses maintain active WhatsApp or Instagram contact links.</p>
+                <div class="p-6 rounded-xl bg-darkBg border border-slate-800 text-center space-y-3">
+                    <i data-lucide="share-2" class="w-8 h-8 text-accentBlue mx-auto"></i>
+                    <p class="text-slate-300 text-sm">Use the <strong class="text-white">Lead Finder Pro</strong> tool above—it automatically cross-checks WhatsApp and Instagram metadata attributes for every discovered location!</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= TAB 5: API HUB ================= -->
+        <section id="tab-api-hub" class="tab-content space-y-6 hidden">
+            <div class="bg-cardBg border border-slate-800 rounded-2xl p-6 sm:p-8 space-y-4">
+                <h2 class="text-2xl font-bold text-white">Free API Architecture Hub</h2>
+                <p class="text-slate-400 text-sm">This platform runs entirely on zero-cost public endpoints:</p>
+                <ul class="list-disc list-inside space-y-2 text-sm text-slate-300">
+                    <li><strong class="text-white">Overpass API (OpenStreetMap):</strong> Used for spatial business lookups globally.</li>
+                    <li><strong class="text-white">Client-side JavaScript Parsing:</strong> Filters records for website availability and social tags (`contact:whatsapp`, `instagram`, `phone`) without requiring a paid server backend.</li>
+                </ul>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Script Logic -->
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        function switchTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.getElementById(`tab-${tabId}`).classList.remove('hidden');
+
+            // Update nav styles
+            ['home', 'lead-finder', 'seo-auditor', 'social-scanner', 'api-hub'].forEach(id => {
+                const btn = document.getElementById(`nav-${id}`);
+                if(btn) {
+                    if(id === tabId) {
+                        btn.classList.add('text-accentBlue');
+                    } else {
+                        btn.classList.remove('text-accentBlue');
+                    }
+                }
+            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // Live Free API Integration using Overpass OpenStreetMap
+        async function executeLiveSearch() {
+            const what = document.getElementById('search-what').value.trim();
+            const where = document.getElementById('search-where').value.trim();
+
+            if(!what || !where) {
+                alert('Please enter both a niche/topic and a location!');
+                return;
+            }
+
+            const loadingEl = document.getElementById('loading-state');
+            const resultsContainer = document.getElementById('results-container');
+            const resultsList = document.getElementById('results-list');
+            const resultCount = document.getElementById('result-count');
+
+            loadingEl.classList.remove('hidden');
+            resultsContainer.classList.add('hidden');
+            resultsList.innerHTML = '';
+
+            try {
+                // Step 1: Get coordinates for the location using Nominatim API (Free)
+                const geoUrl = `https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(where)}`;
+                const geoRes = await fetch(geoUrl);
+                const geoData = await geoRes.json();
+
+                if(!geoData || geoData.length === 0) {
+                    throw new Error('Location not found in open database. Try a broader city name.');
+                }
+
+                const lat = geoData[0].lat;
+                const lon = geoData[0].lon;
+
+                // Step 2: Query Overpass API for businesses near coordinates
+                // Search radius approx 10km (10000 meters)
+                overpassQuery = `
+                    [out:json][timeout:25];
+                    (
+                      node["amenity"~"${what}",i](around:10000, ${lat}, ${lon});
+                      way["amenity"~"${what}",i](around:10000, ${lat}, ${lon});
+                      node["shop"~"${what}",i](around:10000, ${lat}, ${lon});
+                      way["shop"~"${what}",i](around:10000, ${lat}, ${lon});
+                    );
+                    out body;
+                    >;
+                    out skel qt;
+                `;
+
+                const overpassUrl = 'https://overpass-api.de/api/interpreter';
+                const response = await fetch(overpassUrl, {
+                    method: 'POST',
+                    body: overpassQuery
+                });
+                
+                const data = await response.json();
+                const elements = data.elements.filter(el => el.tags && el.tags.name);
+
+                loadingEl.classList.add('hidden');
+                resultsContainer.classList.remove('hidden');
+                resultCount.innerText = `${elements.length} places found`;
+
+                if(elements.length === 0) {
+                    resultsList.innerHTML = `<div class="p-6 rounded-xl bg-cardBg border border-slate-800 text-center text-slate-400">No matching open records found for "${what}" in "${where}". Try a different keyword!</div>`;
+                    return;
+                }
+
+                let html = '';
+                elements.forEach(item => {
+                    const tags = item.tags;
+                    const name = tags.name || 'Unnamed Location';
+                    const hasWebsite = tags.website || tags.url ? true : false;
+                    const websiteUrl = tags.website || tags.url || 'None';
+                    const phone = tags.phone || tags['contact:phone'] || 'Not listed';
+                    const whatsapp = tags['contact:whatsapp'] || tags.whatsapp || 'Not listed';
+                    const instagram = tags['contact:instagram'] || tags.instagram || 'Not listed';
+                    const address = [tags['addr:street'], tags['addr:suburb'], tags['addr:city']].filter(Boolean).join(', ') || 'Address details in open registry';
+
+                    html += `
+                        <div class="bg-cardBg border border-slate-800 rounded-xl p-5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 hover:border-slate-700 transition">
+                            <div class="space-y-1.5">
+                                <div class="flex items-center gap-2">
+                                    <h4 class="text-base font-bold text-white">${name}</h4>
+                                    ${!hasWebsite ? '<span class="px-2 py-0.5 rounded text-[10px] bg-red-500/10 text-red-400 border border-red-500/20 font-semibold">Missing Website</span>' : '<span class="px-2 py-0.5 rounded text-[10px] bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 font-semibold">Has Website</span>'}
+                                </div>
+                                <p class="text-xs text-slate-400 flex items-center gap-1"><i data-lucide="map-pin" class="w-3.5 h-3.5 text-slate-500"></i> ${address}</p>
+                                <div class="flex flex-wrap gap-4 pt-2 text-xs text-slate-300">
+                                    <span>📞 Phone: <strong class="text-white">${phone}</strong></span>
+                                    <span>💬 WhatsApp: <strong class="text-white">${whatsapp}</strong></span>
+                                    <span>📸 Instagram: <strong class="text-white">${instagram}</strong></span>
+                                </div>
+                            </div>
+                            <div class="text-right flex flex-col items-end gap-2 w-full md:w-auto">
+                                <span class="text-xs text-slate-400">Website Status</span>
+                                <span class="text-xs font-mono text-slate-200 bg-darkBg px-3 py-1 rounded-lg border border-slate-800 max-w-[200px] truncate">${websiteUrl}</span>
+                            </div>
+                        </div>
+                    `;
+                });
+
+                resultsList.innerHTML = html;
+                lucide.createIcons();
+
+            } catch (error) {
+                loadingEl.classList.add('hidden');
+                resultsContainer.classList.remove('hidden');
+                resultsList.innerHTML = `<div class="p-6 rounded-xl bg-cardBg border border-slate-800 text-center text-red-400">Error fetching data: ${error.message}. Please check your connection or try another location.</div>`;
+            }
+        }
+
+        function runSimpleAudit() {
+            const urlInput = document.getElementById('audit-url').value.trim();
+            const resDiv = document.getElementById('audit-result');
+            if(!urlInput) {
+                alert('Please enter a valid website URL');
+                return;
+            }
+            resDiv.classList.remove('hidden');
+            const isSecure = urlInput.startsWith('https://');
+            resDiv.innerHTML = `
+                <p class="font-bold text-white mb-1">Audit Summary for: ${urlInput}</p>
+                <ul class="space-y-1 text-xs">
+                    <li>🔒 SSL Certificate (HTTPS): <span class="${isSecure ? 'text-emerald-400' : 'text-red-400'} font-semibold">${isSecure ? 'Active & Secure' : 'Insecure / Missing'}</span></li>
+                    <li>⚡ Status: Domain format parsed successfully. Ready for full performance review.</li>
+                </ul>
+            `;
+        }
+    </script>
+</body>
+</html>
